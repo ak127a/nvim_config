@@ -13,7 +13,7 @@ return {
 				},
 
 				incremental_selection = {
-					enable = true,
+					enable = false,
 					keymaps = {
 						init_selection = "<Leader>ss", -- set to `false` to disable one of the mappings
 						node_incremental = "<Leader>si",
