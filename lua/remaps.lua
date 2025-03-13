@@ -4,8 +4,8 @@ vim.g.maplocalleader = " "
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Open Ex
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- Open Ex, disabled now, since we are using Oil
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("n", "<leader>od", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
