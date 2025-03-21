@@ -12,19 +12,20 @@ return {
 				lualine_c = {
 					{
 						function()
-							-- Get the current working directory
-							local cwd = vim.fn.getcwd()
-							-- Get the full file path
 							local filepath = vim.fn.expand("%:p")
-							-- Get the relative path from the current working directory
-							local relative_path = filepath:sub(#cwd + 2)
-							-- Fallback if the file is not in the current working directory
-							if relative_path == "" then
-								relative_path = vim.fn.expand("%:t") -- Fallback to just the filename
+							-- Use Vim's `fnamemodify` to get the relative path directly
+							local relative_path = vim.fn.fnamemodify(filepath, ":.")
+							-- If the relative path is still absolute or starts with "../", use the filename
+							if relative_path:find("^/") or relative_path:find("^%.%./") then
+								relative_path = vim.fn.expand("%:t")
 							end
-							-- Status symbols
+							-- Handle empty buffers (e.g., new unsaved files)
+							if relative_path == "" then
+								relative_path = "[No Name]"
+							end
 							local modified = vim.bo.modified and " [+]" or ""
 							local readonly = (vim.bo.readonly or not vim.bo.modifiable) and " [-]" or ""
+
 							-- Combine with folder icon (󰉓 is a folder icon from Nerd Fonts)
 							return "󰉓 " .. relative_path .. modified .. readonly
 						end,

@@ -1,3 +1,5 @@
 require("config.lazy")
 require("options")
 require("remaps")
+require("custom_functions")
+require("option_overrides")
