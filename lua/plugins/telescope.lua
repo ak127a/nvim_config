@@ -155,7 +155,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
 		-- Shortcut for searching scratches/temp files
 		vim.keymap.set("n", "<leader>S", function()
-			builtin.find_files({ cwd = "~/scratches" })
+			builtin.find_files({
+				prompt_title = " Search scratches",
+				cwd = "~/scratches",
+			})
 		end, { desc = "[S]cratch files" })
 	end,
 }

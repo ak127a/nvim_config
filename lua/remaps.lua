@@ -51,7 +51,6 @@ vim.keymap.set("n", "<leader>f", function()
 end)
 
 -- Quicklist navigation
-vim.keymap.set("n", "Q", "<cmd>cclose<CR>")
 vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lnext<CR>zz")
