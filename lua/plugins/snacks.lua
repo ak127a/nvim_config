@@ -7,25 +7,6 @@ return {
 			enabled = true,
 			timeout = 2000,
 		},
-		scratch = {
-			enabled = true,
-		},
-	},
-	keys = {
-		{
-			"<leader>.",
-			function()
-				Snacks.scratch()
-			end,
-			desc = "Toggle Scratch Buffer",
-		},
-		{
-			"<leader>S",
-			function()
-				Snacks.scratch.select()
-			end,
-			desc = "Select Scratch Buffer",
-		},
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("LspProgress", {
