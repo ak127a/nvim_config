@@ -9,6 +9,8 @@ vim.opt.splitright = true
 
 vim.opt.wrap = false
 
+vim.opt.guicursor = "n-v-i-c:block-Cursor"
+
 vim.opt.pumheight = 10
 
 vim.opt.tabstop = 4
