@@ -18,16 +18,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<A-[>", "<C-o>", { desc = "Jump backward" })
 vim.keymap.set("n", "<A-]>", "<C-i>", { desc = "Jump forward" })
 
--- Additional macOS-specific Cmd+[ ] mappings
-if vim.fn.has("macunix") == 1 or vim.fn.has("mac") == 1 or vim.fn.has("osx") == 1 then
-	vim.keymap.set("n", "<D-[>", "<C-o>", { desc = "Jump backward (macOS)" })
-	vim.keymap.set("n", "<D-]>", "<C-i>", { desc = "Jump forward (macOS)" })
-
-	-- Optional: Disable Alt mappings if they conflict with system shortcuts
-	-- vim.keymap.del('n', '<A-[')
-	-- vim.keymap.del('n', '<A-]')
-end
-
 -- better navigation, keep stuff in center
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
