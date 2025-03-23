@@ -5,7 +5,7 @@ return {
 	opts = {
 		notifier = {
 			enabled = true,
-			timeout = 2000,
+			timeout = 4000,
 		},
 	},
 	init = function()

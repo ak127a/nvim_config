@@ -54,6 +54,11 @@ return {
 			-- If you're wondering about lsp vs treesitter, you can check out the wonderfully
 			-- and elegantly composed help section, `:help lsp-vs-treesitter`
 
+			local lsp = vim.lsp
+			lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
+				border = "rounded",
+			})
+
 			--  This function gets run when an LSP attaches to a particular buffer.
 			--    That is to say, every time a new file is opened that is associated with
 			--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -75,6 +80,9 @@ return {
 					--  This is where a variable was first declared, or where a function is defined, etc.
 					--  To jump back, press <C-t>.
 					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+
+					-- Open hover diagnostic message
+					map("<leader>cd", vim.diagnostic.open_float, "Open float/hover diagnostic")
 
 					-- Find references for the word under your cursor.
 					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -228,7 +236,30 @@ return {
 			local servers = {
 				-- clangd = {},
 				-- gopls = {},
-				basedpyright = {},
+				basedpyright = {
+					settings = {
+						basedpyright = {
+							analysis = {
+								typeCheckingMode = "standard",
+								extraPaths = {
+									vim.fn.getcwd() .. "/",
+									vim.fn.getcwd() .. "/tools",
+									vim.fn.getcwd() .. "/tools/ops-incident-reporting",
+									vim.fn.getcwd() .. "/tools/ops",
+									vim.fn.getcwd() .. "/tools/shepherd_automation",
+									vim.fn.getcwd() .. "/tools/reporting",
+									vim.fn.getcwd() .. "/tools/build_deploy",
+									vim.fn.getcwd() .. "/tools/admin",
+									vim.fn.getcwd() .. "/tools/confluence",
+									vim.fn.getcwd() .. "/tools/mds/src",
+									vim.fn.getcwd() .. "/tools/jira",
+									-- vim.fn.getcwd() .. "tools/ops-incident-reporting",
+								},
+							},
+						},
+					},
+				},
+
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--

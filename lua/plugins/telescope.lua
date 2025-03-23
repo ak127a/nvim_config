@@ -90,6 +90,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		pcall(require("telescope").load_extension, "ui-select")
 		pcall(require("telescope").load_extension, "live_grep_args")
 
+		live_grep_args_ext = require("telescope").extensions.live_grep_args.live_grep_args
+
 		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
@@ -119,12 +121,39 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			{ desc = "[S]earch current selection" }
 		)
 
-		vim.keymap.set(
-			"n",
-			"<leader>sg",
-			":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-			{ desc = "[S]earch by [G]rep" }
-		)
+		local live_grep_args_with_no_ignore = [[
+		{
+			vimgrep_arguments = {
+				"rg",
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+				"--no-ignore",
+			},
+		}
+		]]
+
+		local live_grep_args_with_no_ignore_func = function()
+			require("telescope").extensions.live_grep_args.live_grep_args({
+				vimgrep_arguments = {
+					"rg",
+					"--color=never",
+					"--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
+					"--smart-case",
+					"--no-ignore", -- added this, the rest above are defaults
+				},
+			})
+		end
+
+		vim.keymap.set("n", "<leader>sg", live_grep_args_with_no_ignore_func, { desc = "[S]earch by [G]rep" })
+
+		vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch [B]uffers" })
 
 		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
