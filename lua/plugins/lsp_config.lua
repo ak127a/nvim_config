@@ -244,6 +244,7 @@ return {
 								extraPaths = {
 									vim.fn.getcwd() .. "/",
 									vim.fn.getcwd() .. "/tools",
+									vim.fn.getcwd() .. "/tools/ociauth",
 									vim.fn.getcwd() .. "/tools/ops-incident-reporting",
 									vim.fn.getcwd() .. "/tools/ops",
 									vim.fn.getcwd() .. "/tools/shepherd_automation",

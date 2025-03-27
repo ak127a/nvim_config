@@ -9,10 +9,9 @@ return {
 		config = function()
 			local actions = require("diffview.actions")
 			vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen -uno<CR>")
-			vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen master<CR>")
+			vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen origin/master<CR>")
 			vim.keymap.set("n", "<leader>gh", "<cmd>DiffviewFileHistory %<CR>")
 			vim.keymap.set("n", "q", actions.close)
-			vim.keymap.set("n", "<C-r>", actions.refresh_files)
 		end,
 	},
 	{
