@@ -151,11 +151,17 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			})
 		end
 
-		vim.keymap.set("n", "<leader>sg", live_grep_args_with_no_ignore_func, { desc = "[S]earch by [G]rep" })
+		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+		vim.keymap.set(
+			"n",
+			"<leader>sa",
+			live_grep_args_with_no_ignore_func,
+			{ desc = "[S]earch by [G]rep, search ALL files (disregard .gitignore)" }
+		)
 
 		vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch [B]uffers" })
 
-		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+		vim.keymap.set("n", "<leader>sd", builtin.lsp_document_symbols, { desc = "[S]earch [D]ocument symbols" })
 		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 
