@@ -143,4 +143,22 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
 	},
+	{
+		"danymat/neogen",
+		config = function()
+			local neogen = require("neogen")
+			neogen.setup({
+				snippet_engine = "luasnip",
+				enabled = true,
+				languages = {
+					python = {
+						template = {
+							annotation_convention = "google_docstrings",
+						},
+					},
+				},
+			})
+			vim.keymap.set("n", "<leader>l", neogen.generate)
+		end,
+	},
 }
